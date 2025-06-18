@@ -2,25 +2,27 @@
   display: flex;
   flex-direction: column;
   height: 720px;
-  width: 404px; /* Исходная ширина */
+  width: 404px;
+  border: 1px solid gray;
+  border-radius: 10px;
   font-size: 12px;
   padding-bottom: 40px;
-  border-bottom: var(--border);
 }
 
 .postImage {
-  width: 404px; /* Исходная ширина */
-  height: 503px; /* Исходная высота */
-  object-fit: contain; /* Соответствие дизайну */
-  border-radius: 4px;
+  width: 404px;
+  height: 503px;
+  object-fit: contain;
+  padding-top: 10px;
   padding-bottom: 10px;
+  border-bottom: 1px solid gray;
+  border-top: 1px solid gray;
 }
 
 .header {
   display: flex;
   align-items: center;
-  padding-top: 6px;
-  padding-bottom: 6px;
+  padding: 10px;
 }
 
 .avatarContainer {
@@ -57,6 +59,7 @@
 .actions {
   display: flex;
   align-items: center;
+  padding-top: 10px;
   gap: 14px;
 }
 
@@ -85,7 +88,12 @@
   stroke: black;
   stroke-width: 3px;
 }
-
+.bottomBlock {
+  padding: 10px;
+}
+.commentsContainer {
+  padding: 10px;
+}
 .liked {
   color: red;
   stroke: none;
@@ -93,14 +101,11 @@
 
 @media (max-width: 1200px) {
   .postItem {
-    width: 95%;
     height: auto;
-    padding-bottom: 20px;
   }
 
   .postImage {
     max-height: 250px;
-    border-radius: 5px;
   }
 
   .avatarContainer {
@@ -116,7 +121,9 @@
   .userInfo {
     align-items: flex-start;
   }
-
+  .userInfo > span {
+    font-size: clamp(10px, 2vw + 1px, 10px);
+  }
   .likesCount {
     font-size: 10px;
   }

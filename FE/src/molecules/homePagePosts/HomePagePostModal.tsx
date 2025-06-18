@@ -25,7 +25,7 @@ const EmojiPicker: React.FC<{ onSelectEmoji: (emoji: string) => void }> = ({
 }) => {
   const [showEmojis, setShowEmojis] = useState(false);
 
-  const emojis = Array.from({ length: 50 }, (_, i) =>
+  const emojis = Array.from({ length: 1000 }, (_, i) =>
     String.fromCodePoint(0x1f600 + i),
   );
 

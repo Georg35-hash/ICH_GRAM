@@ -14,7 +14,7 @@ export const LoginPage = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentScreenshot(prev => (prev + 1) % screenshotstyles.length);
+      setCurrentScreenshot(prev => (prev + 1) % screenshots.length);
     }, 3500);
 
     return () => clearInterval(interval);
@@ -26,7 +26,7 @@ export const LoginPage = () => {
         <img src={phoneFrame} alt="phone frame" className={styles.phoneFrame} />
         <div className={styles.screen}>
           <img
-            key={currentScreenshot} // Уникальный ключ для перерендеринга
+            key={currentScreenshot}
             src={screenshots[currentScreenshot]}
             alt="App Screenshot"
             className={styles.screenImage}

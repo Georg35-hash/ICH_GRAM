@@ -24,8 +24,8 @@ type State = {
   loading: boolean;
   error: string | null;
   likesCounts: { [key: string]: number };
-  selectedPost: Post | null; // Состояние для выбранного поста
-  followingList: string[] | null; // Список подписок текущего пользователя
+  selectedPost: Post | null;
+  followingList: string[] | null;
 };
 
 class HomePagePosts extends React.Component<{}, State> {
@@ -37,7 +37,7 @@ class HomePagePosts extends React.Component<{}, State> {
       error: null,
       likesCounts: {},
       followingList: null,
-      selectedPost: null, // Инициализируем состояние для выбранного поста
+      selectedPost: null,
     };
   }
 
@@ -47,19 +47,16 @@ class HomePagePosts extends React.Component<{}, State> {
 
   getAllPosts = async () => {
     try {
-      const userId = localStorage.getItem('userId'); // Получаем текущий userId
+      const userId = localStorage.getItem('userId');
       const response = await $api.get('/post/all/public');
       const allPosts = response.data;
 
-      // Фильтруем посты, исключая посты текущего пользователя
       const filteredPosts = allPosts.filter(
         (post: Post) => post.user_id !== userId,
       );
 
-      // Перемешиваем посты случайным образом
       const shuffledPosts = filteredPosts.sort(() => Math.random() - 0.5);
 
-      // Добавляем данные о последнем комментарии для каждого поста
       const postsWithLastComment = await Promise.all(
         shuffledPosts.map(async (post: Post) => {
           try {
@@ -70,7 +67,7 @@ class HomePagePosts extends React.Component<{}, State> {
                 ? comments[comments.length - 1].comment_text
                 : '';
           } catch {
-            post.last_comment = 'No comments yet'; // Если комментариев нет
+            post.last_comment = 'No comments yet';
           }
           return post;
         }),
@@ -90,7 +87,7 @@ class HomePagePosts extends React.Component<{}, State> {
         loading: false,
       });
     } catch (error) {
-      this.setState({ error: 'Ошибка при загрузке постов', loading: false });
+      this.setState({ error: 'Error per loading page', loading: false });
     }
   };
 
@@ -103,12 +100,10 @@ class HomePagePosts extends React.Component<{}, State> {
     }));
   };
 
-  // Функция для открытия модального окна с выбранным постом
   openModal = (post: Post) => {
     this.setState({ selectedPost: post });
   };
 
-  // Функция для закрытия модального окна
   closeModal = () => {
     this.setState({ selectedPost: null });
   };
@@ -156,26 +151,26 @@ class HomePagePosts extends React.Component<{}, State> {
     if (error) return <p>{error}</p>;
 
     return (
-      <div>
-        <ul className={styles.postsContainer}>
-          {posts.map(post => (
-            <PostItem
-              handleRemoveSomeFollow={this.handleRemoveSomeFollow}
-              handleAddSomeFollow={this.handleAddSomeFollow}
-              listFollowing={this.state.followingList}
-              key={post._id}
-              item={post}
-              likesCount={likesCounts[post._id] || 0}
-              setLikesCount={this.handleLikesCountChange}
-              onClick={() => this.openModal(post)} // Открытие модального окна при клике на пост
-            />
-          ))}
-        </ul>
-
-        {/* Модальное окно для выбранного поста */}
-        {selectedPost && (
-          <HomePostModal post={selectedPost} onClose={this.closeModal} />
-        )}
+      <div style={{ display: 'flex' }}>
+        <div>
+          <ul className={styles.postsContainer}>
+            {posts.map(post => (
+              <PostItem
+                handleRemoveSomeFollow={this.handleRemoveSomeFollow}
+                handleAddSomeFollow={this.handleAddSomeFollow}
+                listFollowing={this.state.followingList}
+                key={post._id}
+                item={post}
+                likesCount={likesCounts[post._id] || 0}
+                setLikesCount={this.handleLikesCountChange}
+                onClick={() => this.openModal(post)}
+              />
+            ))}
+          </ul>
+          {selectedPost && (
+            <HomePostModal post={selectedPost} onClose={this.closeModal} />
+          )}
+        </div>
       </div>
     );
   }

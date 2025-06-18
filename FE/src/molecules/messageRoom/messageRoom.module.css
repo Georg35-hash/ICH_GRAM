@@ -63,7 +63,6 @@
   row-gap: 16px;
   width: 60%;
   margin: 0 auto;
-  padding: 100px 30px 0;
   overflow-y: auto;
   max-height: 100vh;
 }
@@ -123,12 +122,10 @@
   border: var(--border);
 }
 
-/* Аватар собеседника (слева) */
 .avatar_their {
   margin-right: 10px;
 }
 
-/* Аватар отправителя (справа) */
 .avatar_my {
   margin-left: 10px;
 }

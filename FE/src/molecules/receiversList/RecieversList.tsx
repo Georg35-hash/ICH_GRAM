@@ -1,77 +1,3 @@
-// import React, { useEffect, useState } from "react";
-// import { useDispatch, useSelector } from "react-redux";
-// import { useNavigate } from "react-router-dom";
-
-// import { getUsersWithChats } from "../../redux/slices/userSlice";
-// import { RootState } from "../../redux/store";
-// import styles from"./recieversList.module.css";
-
-// const RecieversList: React.FC = () => {
-//   const dispatch = useDispatch();
-//   const navigate = useNavigate();
-
-//   const { user, loading, error } = useSelector((state: RootState) => state.user);
-//   const { username } = useSelector((state: RootState) => state.auth.user!);
-
-//   const [activeUserId, setActiveUserId] = useState<string | null>(
-//     () => localStorage.getItem("activeUserId") // Загружаем ID из localStorage при монтировании
-//   );
-
-//   useEffect(() => {
-//     dispatch(getUsersWithChats());
-//   }, [dispatch]);
-
-//   if (loading) {
-//     console.log("Data is loading...");
-//     return <p>Загрузка...</p>;
-//   }
-//   if (error) {
-//     console.error("An error occurred:", error);
-//     return <p>Ошибка: {error}</p>;
-//   }
-
-//   console.log("Fetched user data:", user);
-
-//   // Обработчик выбора пользователя
-//   const handleSelectUser = (targetUserId: string) => {
-//     setActiveUserId(targetUserId); // Устанавливаем выбранного пользователя активным
-//     localStorage.setItem("activeUserId", targetUserId); // Сохраняем в localStorage
-//     navigate("/messages", { state: { targetUserId } }); // Передаём ID пользователя в состояние
-//   };
-
-//   return (
-//     <div className={styles.recieversList}>
-//       <h4>{username}</h4>
-//       <ul>
-//         {user.map((chatUser) => {
-//           const isActive = chatUser._id === activeUserId; // Проверяем, является ли текущий пользователь активным
-//           return (
-//             <li
-//               className={`${styles.recieversList_userBox} ${isActive ? styles.active : ""}`}
-//               key={chatUser._id}
-//               onClick={() => handleSelectUser(chatUser._id)} // Переход в комнату сообщений при клике
-//             >
-//               <img
-//                 className={styles.userBox_img}
-//                 src={chatUser.profile_image}
-//                 alt={chatUser.username}
-//               />
-//               <span className={styles.userBox_data}>
-//                 <p className={styles.userBox_dataP1}>{chatUser.username}</p>
-//                 <p className={styles.userBox_dataP2}>
-//                   {chatUser.username} sent a message. •{" "}
-//                 </p>
-//               </span>
-//             </li>
-//           );
-//         })}
-//       </ul>
-//     </div>
-//   );
-// };
-
-// export default RecieversList;
-
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -108,7 +34,7 @@ const RecieversList: React.FC = () => {
 
   // Функция для получения даты последнего сообщения
   const getLastMessageDate = (messages: any[]) => {
-    if (!messages || messagestyles.length === 0) {
+    if (!messages || messages.length === 0) {
       return null; // Если сообщений нет
     }
 
@@ -117,7 +43,7 @@ const RecieversList: React.FC = () => {
         .map(message => new Date(message.created_at).getTime())
         .filter(time => !isNaN(time)); // Убираем некорректные даты
 
-      if (timestampstyles.length === 0) {
+      if (timestamps.length === 0) {
         return null;
       }
 

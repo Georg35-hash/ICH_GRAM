@@ -24,15 +24,13 @@ const CurrentUserProfile: React.FC = () => {
 
   if (!user) return <div>{t('currentUserProfile.error')}</div>;
 
-  // Функция для выхода из аккаунта
   const handleLogout = () => {
-    dispatch(logout()); // Вызов действия logout
-    navigate('/'); // Перенаправление на страницу логина
+    dispatch(logout());
+    navigate('/');
   };
 
-  // Функция для перехода на страницу редактирования профиля
   const handleEditProfile = () => {
-    navigate('/profile/edit'); // Перенаправление на страницу редактирования профиля
+    navigate('/profile/edit');
   };
   const handleChangeFollow = (newFollow: ILocalFollow) => {
     setFollow(newFollow);

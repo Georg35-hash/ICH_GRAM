@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { HiOutlineEye, HiOutlineEyeOff } from 'react-icons/hi';
-
 import CustomButton from '../../atoms/customButton/CustomButton';
 import CustomInput from '../../atoms/customInput/CustomInput';
 import { setUser } from '../../redux/slices/authSlice';
@@ -23,7 +22,7 @@ export const LoginForm = () => {
   const [passwordErrorMessage, setPasswordErrorMessage] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [authError, setAuthError] = useState('');
-  const [showPassword, setShowPassword] = useState(false); // состояние для глазика
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleInputChange =
     (field: keyof typeof userObject) => (value: string) => {

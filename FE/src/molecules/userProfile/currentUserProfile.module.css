@@ -11,7 +11,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px; /* Отступ между иконкой и текстом */
+  gap: 8px;
   line-height: 18px;
   transition: background-color 0.3s ease;
 }
@@ -30,7 +30,6 @@
   right: -3px;
   bottom: -3px;
   border-radius: 50%;
-
   z-index: 1;
 }
 
@@ -88,8 +87,6 @@
 .currentUserProfile_statisticBio {
   width: 97%;
   line-height: 18px;
-  margin-left: 10px; /* добавляем отступ слева */
-  margin-right: 10px; /* добавляем отступ справа */
 }
 
 .webLink {
@@ -99,7 +96,6 @@
   cursor: pointer;
 }
 
-/* Адаптивность для экранов от 1200px до 992px */
 @media (max-width: 1200px) {
   .currentUserProfile {
     padding: 30px 20px;
@@ -141,7 +137,6 @@
   }
 }
 
-/* Адаптивность для экранов от 992px до 768px */
 @media (max-width: 992px) {
   .currentUserProfile {
     flex-direction: column;

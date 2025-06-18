@@ -31,12 +31,10 @@ import useThemeMode from './hooks/useThemeMode';
 
 const Layout: FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
-    <div>
+    <div style={{ display: 'flex', flexDirection: 'column' }}>
       <div
         style={{
           display: 'flex',
-          justifyContent: 'space-between',
-          width: '60%',
         }}
       >
         <div className="sidebar">

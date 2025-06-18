@@ -21,11 +21,10 @@
   left: 10%;
   width: 60vw;
   height: 65vh;
-  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2); /* Тень для модалки */
-  z-index: 10000; /* Перекрытие остальных элементов */
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+  z-index: 10;
 }
 
-/* Левая сторона модалки */
 .modalContent_leftside {
   width: 60%;
   background-color: #f0f0f0;
@@ -80,14 +79,13 @@
   overflow: hidden;
 }
 
-.gradient_border_inner img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
+.gradient_border_inner > img {
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
   border-radius: 50%;
 }
 
-/* Имя пользователя */
 .user_name {
   font-size: 14px;
   font-weight: bold;
@@ -101,7 +99,7 @@
   position: relative;
   bottom: 40px;
 }
-/* Уведомления о лайках и комментариях */
+
 .modalContent_rightside_notifications {
   display: flex;
   gap: 15px;
@@ -153,10 +151,7 @@ span > .commentIcon,
   height: 30px;
   border-radius: 50%;
 }
-/* .modalContent_leftside {
-      height: 40vh; 
-  }
-   */
+
 .commentActions span {
   font-size: 12px;
   color: #333;
@@ -177,7 +172,6 @@ span > .commentIcon,
   transition: color 0.2s ease;
 }
 
-/* Добавление нового комментария */
 .addCommentSection {
   max-height: 45px;
   padding: 10px 0;
@@ -215,7 +209,6 @@ span > .commentIcon,
   cursor: not-allowed;
 }
 
-/* Ошибка */
 .errorText {
   margin-top: 10px;
   color: #ff0000;
@@ -259,15 +252,15 @@ span > .commentIcon,
   position: absolute;
   bottom: 40px;
   left: 0;
-  width: 300px; /* ширина как у правой стороны модалки */
+  width: 300px;
   height: 150px;
   display: flex;
-  flex-wrap: wrap; /* разбиваем элементы на строки */
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  background-color: white; /* фон под контейнером */
-  border-radius: 8px; /* слегка скруглённые края */
-  overflow-x: auto; /* добавляем прокрутку, если смайликов слишком много */
+  background-color: white;
+  border-radius: 8px;
+  overflow-x: auto;
   padding: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
@@ -283,11 +276,11 @@ span > .commentIcon,
 }
 
 .emojiList::-webkit-scrollbar {
-  height: 5px; /* высота полосы прокрутки */
+  height: 5px;
 }
 
 .emojiList::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.2); /* цвет полосы прокрутки */
+  background: rgba(0, 0, 0, 0.2);
   border-radius: 10px;
 }
 

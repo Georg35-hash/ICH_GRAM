@@ -1,20 +1,20 @@
 .postList {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 колонки */
+  grid-template-columns: repeat(2, 1fr);
   gap: 4px;
   padding: 40px;
   width: 100%;
-  margin: 0 auto; /* Центрирование контейнера */
+  margin: 0 auto;
 }
 
 .postList > img {
-  width: 100%;
+  max-width: 300px;
   height: 312px;
-  object-fit: contain;
+  object-fit: cover;
+  gap: 10px;
   object-position: center;
 }
 
-/* Адаптивность */
 @media (max-width: 1024px) {
   .postList {
     padding: 25px;

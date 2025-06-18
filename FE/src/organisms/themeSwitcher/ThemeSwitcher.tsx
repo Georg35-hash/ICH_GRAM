@@ -1,5 +1,6 @@
 import { IconButton } from '@mui/material';
-import { WbSunny, NightsStay } from '@mui/icons-material';
+import Brightness4Icon from '@mui/icons-material/Brightness4';
+import Brightness7Icon from '@mui/icons-material/Brightness7';
 
 export default function ThemeSwitcher({ toggleTheme, mode }: undefined) {
   return (
@@ -19,9 +20,9 @@ export default function ThemeSwitcher({ toggleTheme, mode }: undefined) {
         }}
       >
         {mode === 'dark' ? (
-          <NightsStay sx={{ color: '#fbc02d', fontSize: 36 }} />
+          <Brightness4Icon sx={{ color: '#fbc02d', fontSize: 36 }} />
         ) : (
-          <WbSunny sx={{ color: '#ff9800', fontSize: 36 }} />
+          <Brightness7Icon sx={{ color: '#ff9800', fontSize: 36 }} />
         )}
       </IconButton>
     </div>

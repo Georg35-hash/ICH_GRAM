@@ -97,32 +97,4 @@
       padding: 0px;
     }
   }
-  /* .ModalLarge {
-    width: 60%;
-    height: auto;
-    max-height: 80vh;
-    margin: 0 auto;
-  }
-
-  .ModalSmall {
-    width: 350px;
-    height: auto;
-    margin: 5% auto;
-  }
-
-  .Modal {
-    max-height: 80vh;
-    padding: 30px;
-  }
-
-  .modalCloseButton {
-    top: 15px;
-    right: 15px;
-    font-size: 20px;
-  }
-
-  .ModalContent {
-    padding: 25px;
-  }
-} */
 }

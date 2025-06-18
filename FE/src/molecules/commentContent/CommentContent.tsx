@@ -4,7 +4,7 @@ import { FaHeart } from 'react-icons/fa';
 import { RootState } from '../../redux/store';
 import { fetchComments, likeComment } from '../../redux/slices/commentsSlice';
 import profilePlaceholder from '../../assets/profile-placeholder.svg';
-import s from './CommentContent.module.css';
+import styles from './CommentContent.module.css';
 import { useTranslation } from 'react-i18next';
 import parseData from '../../helpers/parseData';
 
@@ -44,9 +44,9 @@ const CommentContent: React.FC<CommentContentProps> = ({ postId }) => {
   }
 
   return (
-    <div className={s.commentsSection}>
+    <div className={styles.commentsSection}>
       {comments.map((comment: any) => (
-        <div key={comment._id} className={s.comment}>
+        <div key={comment._id} className={styles.comment}>
           <img
             src={
               comment.user_id === currentUser._id
@@ -54,9 +54,9 @@ const CommentContent: React.FC<CommentContentProps> = ({ postId }) => {
                 : comment.profile_image || profilePlaceholder
             }
             alt="comment-avatar"
-            className={s.commentAvatar}
+            className={styles.commentAvatar}
           />
-          <div className={s.commentContent}>
+          <div className={styles.commentContent}>
             <p>
               <strong>
                 {comment.user_id === currentUser._id
@@ -67,14 +67,18 @@ const CommentContent: React.FC<CommentContentProps> = ({ postId }) => {
             </p>
             <p>{comment.comment_text}</p>
           </div>
-          <div className={s.commentActions}>
+          <div className={styles.commentActions}>
             <FaHeart
-              className={`${s.likeIcon} ${
-                comment.likes?.includes(currentUser._id) ? s.liked : s.unliked
+              className={`${styles.likeIcon} ${
+                comment.likes?.includes(currentUser._id)
+                  ? styles.liked
+                  : styles.unliked
               }`}
               onClick={() => handleLikeComment(comment._id)}
             />
-            <span className={s.likeCount}>{comment.likes?.length || 0}</span>
+            <span className={styles.likeCount}>
+              {comment.likes?.length || 0}
+            </span>
           </div>
         </div>
       ))}
