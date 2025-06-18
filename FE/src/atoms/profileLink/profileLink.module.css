@@ -32,23 +32,19 @@
 
 .profileLink_photoBox img {
   border-radius: 50%;
-  object-fit: contain;
+  object-fit: cover;
   width: 24px;
   height: 24px;
 }
 
-/* Стандартный стиль для текста */
 .profileLink .link span {
   display: inline;
 }
 
-/* Адаптивность для экранов меньше 768px - скрыть текст */
 @media (max-width: 768px) {
   .profileLink .link span {
     display: none !important;
   }
-
-  /* Для активных ссылок, скрывать текст на экранах до 768px */
   .profileLink .activeLink span {
     display: none !important;
   }
@@ -71,9 +67,8 @@
     top: 10px;
   }
 
-  .profileLink_photoBox img {
-    border-radius: 50%;
-    object-fit: contain;
+  .profileLink_photoBox > img {
+    object-fit: cover;
     width: 33px;
     height: 33px;
   }

@@ -67,24 +67,21 @@
   max-height: 100vh;
 }
 
-/* Сообщение от меня */
 .list_item_my {
   display: flex;
-  justify-content: flex-end; /* Фото справа */
-  gap: 10px; /* Расстояние между сообщением и фото */
+  justify-content: flex-end;
+  gap: 10px;
   margin-left: 30%;
   margin-right: 0;
 }
 
-/* Сообщение от собеседника */
 .list_item_their {
   display: flex;
-  justify-content: flex-start; /* Фото слева */
-  gap: 10px; /* Расстояние между фото и сообщением */
+  justify-content: flex-start;
+  gap: 10px;
   margin-right: 30%;
 }
 
-/* Общий стиль текста сообщения */
 .message_text {
   font-weight: 400;
   line-height: 15.5px;
@@ -98,27 +95,25 @@
   border-radius: var(--border-radius-l);
 }
 
-/* Сообщение от меня */
 .list_item_my .message_text {
   color: var(--color-text-white);
 }
 .list_item_my .message_wrapper {
   background-color: var(--color-bg-ultraviolet);
 }
-/* Сообщение от собеседника */
+
 .list_item_their .message_text {
-  color: var(--color-text-dark); /* Тёмный текст */
+  color: var(--color-text-dark);
 }
 .list_item_their .message_wrapper {
   background-color: var(--color-bg-dark-grey);
 }
 
-/* Общий стиль для аватаров */
 .avatar {
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  object-fit: contain;
+  object-fit: cover;
   border: var(--border);
 }
 

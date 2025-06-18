@@ -58,7 +58,7 @@ const CurrentUserProfile: React.FC = () => {
               width: '168.72px',
               backgroundColor: 'var(--color-bg-dark-grey)',
             }}
-            onClick={handleEditProfile} // Обработчик для кнопки редактирования
+            onClick={handleEditProfile}
           />
           <CustomButton
             className={styles.btn}

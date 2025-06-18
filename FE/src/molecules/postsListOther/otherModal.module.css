@@ -76,7 +76,7 @@
   overflow: hidden;
 }
 
-.gradient_border_inner img {
+.gradient_border_inner > img {
   width: 38px;
   height: 100%;
   object-fit: cover;

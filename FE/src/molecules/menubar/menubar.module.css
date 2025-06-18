@@ -33,9 +33,9 @@
 .menubar a:hover {
   background-color: var(--color-bg-dark-grey);
   border-radius: var(--border-radius-s);
+  padding: 2px;
 }
 
-/* Адаптивность для экранов меньше 768px - скрыть текст */
 @media (max-width: 768px) {
   .menubar .link span {
     display: none;

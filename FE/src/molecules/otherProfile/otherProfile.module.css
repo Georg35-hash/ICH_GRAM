@@ -22,7 +22,6 @@
 
 .gradient_border {
   position: relative;
-  min-width: 172px;
   height: 172px;
   border-radius: 50%;
 }
@@ -110,7 +109,6 @@
 }
 @media (max-width: 765px) {
   .otherProfile {
-    width: 100vw;
     padding: 0;
     gap: 0px;
     justify-content: center;

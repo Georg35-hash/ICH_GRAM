@@ -10,14 +10,14 @@ import styles from './editProfileForm.module.css';
 
 const EditProfileForm: React.FC = () => {
   const { t } = useTranslation();
-  const user = useSelector((state: RootState) => state.auth.user); // Получаем данные текущего пользователя
+  const user = useSelector((state: RootState) => state.auth.user);
   const dispatch = useDispatch();
 
   const [username, setUsername] = useState(user?.username || '');
   const [bioWebsite, setBioWebsite] = useState(user?.bio_website || '');
   const [bio, setBio] = useState(user?.bio || '');
   const [profileImage, setProfileImage] = useState(user?.profile_image || '');
-  const [profileImageFile, setProfileImageFile] = useState<File | null>(null); // Новый стейт для хранения файла
+  const [profileImageFile, setProfileImageFile] = useState<File | null>(null);
   const [charCount, setCharCount] = useState(bio.length);
 
   const handleSubmit = async (event: React.FormEvent) => {
@@ -113,8 +113,9 @@ const EditProfileForm: React.FC = () => {
 
       <label>
         {t('editProfileForm.website')}
+
         <input
-          type="text"
+          type="url"
           value={bioWebsite}
           onChange={e => setBioWebsite(e.target.value)}
           className={styles.inputField}
