@@ -4,7 +4,7 @@
   gap: 4px;
   padding: 40px;
   width: 90%;
-  margin: 0 auto; /* Центрирование контейнера */
+  margin: 0 auto;
 }
 .posnlistOther {
   display: flex;
@@ -14,7 +14,7 @@
   margin: 0 auto;
 }
 .postList > img {
-  width: 100%;
+  width: 300px;
   height: 312px;
   object-fit: contain;
   object-position: center;

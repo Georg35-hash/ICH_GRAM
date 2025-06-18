@@ -58,11 +58,10 @@
   cursor: pointer;
 }
 
-.ModalContent {
+.modalContent {
   padding: 20px;
 }
 
-/* Адаптив */
 @media (max-width: 768px) {
   .ModalLeft {
     position: fixed;

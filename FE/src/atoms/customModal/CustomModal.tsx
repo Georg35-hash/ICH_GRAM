@@ -1,6 +1,6 @@
 // CustomModal.tsx
 import React from 'react';
-import styles from './customModal.module.css'; // Подключение как модуля
+import styles from './customModal.module.css';
 
 interface CustomModalProps {
   isOpen: boolean;
@@ -39,7 +39,7 @@ const CustomModal: React.FC<CustomModalProps> = ({
         <button className={styles.modalCloseButton} onClick={onClose}>
           ×
         </button>
-        <div className={styles.ModalContent}>{content}</div>
+        <div className={styles.modalContent}>{content}</div>
       </div>
     </div>
   );

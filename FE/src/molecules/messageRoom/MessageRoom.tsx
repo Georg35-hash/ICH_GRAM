@@ -10,6 +10,7 @@ import CustomButton from '../../atoms/customButton/CustomButton';
 import mess from '../../assets/messages.svg';
 import { AppDispatch, RootState } from '../../redux/store';
 import styles from './messageRoom.module.css';
+import profilePlaceholder from '../../assets/profile-placeholder.svg';
 
 interface IMessage {
   _id: string;
@@ -149,19 +150,16 @@ const MessagesRoom: React.FC = () => {
     }
   };
 
-  // Просмотр профиля получателя
   const handleViewProfile = () => {
     if (recipient && recipient._id) {
       navigate(`/profile/${recipient._id}`);
     }
   };
 
-  // Прокрутка вниз при обновлении сообщений
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
-  // Последняя дата переписки
   const lastMessageDate = messages.length
     ? new Date(
         Math.max(
@@ -178,7 +176,7 @@ const MessagesRoom: React.FC = () => {
             <img
               src={recipient.profile_image}
               alt={recipient.username}
-              className={styles.profileImage}
+              className={styles.profileImage || profilePlaceholder}
             />
             <div>
               <h5>{recipient.username}</h5>
@@ -188,7 +186,7 @@ const MessagesRoom: React.FC = () => {
             <img
               src={recipient.profile_image}
               alt={recipient.username}
-              className={styles.profileImage_inside}
+              className={styles.profileImage_inside || profilePlaceholder}
             />
             <div>
               <h4>{recipient.username}</h4>
@@ -216,8 +214,8 @@ const MessagesRoom: React.FC = () => {
             {messages.map(message => {
               const isMyMessage = message.sender_id === _id; // Проверяем, кто отправитель
               const userImage = isMyMessage
-                ? userAvatar // Фото текущего пользователя
-                : recipient?.profile_image; // Фото собеседника
+                ? userAvatar
+                : recipient?.profile_image || profilePlaceholder; // Фото собеседника
 
               return (
                 <li

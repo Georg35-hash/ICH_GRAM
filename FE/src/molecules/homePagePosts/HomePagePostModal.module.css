@@ -109,10 +109,11 @@
   padding: 4px 14px;
   border-top: 1px solid #737373;
 }
-.modalContent_rightside_notifications span {
+.modalContent_rightside_notifications > span {
   padding: 2px;
   display: flex;
   flex-direction: column;
+  width: 34px;
   align-items: center;
 }
 .modalContent_rightside_notifications_date {

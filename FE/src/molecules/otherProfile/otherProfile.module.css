@@ -2,6 +2,7 @@
   display: flex;
   padding: 30px 0 0 20px;
   gap: 95px;
+  justify-content: center;
   width: 100%;
 }
 
@@ -53,7 +54,7 @@
   overflow: hidden;
 }
 
-.gradient_border_inner img {
+.gradient_border_inner > img {
   width: 164px;
   height: 164px;
   object-fit: cover;

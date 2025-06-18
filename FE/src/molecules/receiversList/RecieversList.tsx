@@ -5,7 +5,7 @@ import { AppDispatch, RootState } from '../../redux/store';
 import { getUsersWithChats } from '../../redux/slices/userSlice';
 import styles from './recieversList.module.css';
 import parseData from '../../helpers/parseData';
-
+import profilePlaceholder from '../../assets/profile-placeholder.svg';
 const RecieversList: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
@@ -32,16 +32,15 @@ const RecieversList: React.FC = () => {
     navigate('/messages', { state: { targetUserId, lastMessageDate } });
   };
 
-  // Функция для получения даты последнего сообщения
   const getLastMessageDate = (messages: any[]) => {
     if (!messages || messages.length === 0) {
-      return null; // Если сообщений нет
+      return null;
     }
 
     try {
       const timestamps = messages
         .map(message => new Date(message.created_at).getTime())
-        .filter(time => !isNaN(time)); // Убираем некорректные даты
+        .filter(time => !isNaN(time));
 
       if (timestamps.length === 0) {
         return null;
@@ -50,7 +49,6 @@ const RecieversList: React.FC = () => {
       const lastMessageTimestamp = Math.max(...timestamps);
       const lastMessageDate = new Date(lastMessageTimestamp);
 
-      // Форматируем дату в удобный вид
       return lastMessageDate.toLocaleString('en-US', {
         year: 'numeric',
         month: 'short',
@@ -65,12 +63,12 @@ const RecieversList: React.FC = () => {
   };
 
   if (loading) {
-    return <p>Загрузка...</p>;
+    return <p>Loading...</p>;
   }
 
   if (error) {
     console.error('An error occurred:', error);
-    return <p>Ошибка: {error}</p>;
+    return <p>Error: {error}</p>;
   }
 
   return (
@@ -89,7 +87,7 @@ const RecieversList: React.FC = () => {
             >
               <img
                 className={styles.userBox_img}
-                src={chatUser.profile_image}
+                src={chatUser.profile_image || profilePlaceholder}
                 alt={chatUser.username}
               />
               <span className={styles.userBox_data}>
