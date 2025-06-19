@@ -1,22 +1,28 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  fetchComments,
-  addComment,
-  likeComment,
-} from '../../redux/slices/commentsSlice';
+import { fetchComments, addComment } from '../../redux/slices/commentsSlice';
 import { RootState } from '../../redux/store';
 import { $api } from '../../api/api';
 import styles from './HomePagePostModal.module.css';
 import { useTranslation } from 'react-i18next';
 import profilePlaceholder from '../../assets/profile-placeholder.svg';
-import { FaHeart } from 'react-icons/fa';
 import commbtn from '../../assets/comment_btn.svg';
 import heart from '../../assets/heart_btn.svg';
 import CommentContent from '../commentContent/CommentContent';
 
+interface PostType {
+  _id: string;
+  image_url?: string;
+  profile_image?: string;
+  user_name: string;
+  caption: string;
+  created_at: string;
+  likes_count?: number;
+  comments_count?: number;
+}
+
 interface ModalProps {
-  post: any;
+  post: PostType;
   onClose: () => void;
 }
 
@@ -24,10 +30,7 @@ const EmojiPicker: React.FC<{ onSelectEmoji: (emoji: string) => void }> = ({
   onSelectEmoji,
 }) => {
   const [showEmojis, setShowEmojis] = useState(false);
-
-  const emojis = Array.from({ length: 1000 }, (_, i) =>
-    String.fromCodePoint(0x1f600 + i),
-  );
+  const emojis = ['😊', '😂', '😍', '😢', '👍', '🔥', '💯', '👏', '🤔', '😎'];
 
   const toggleEmojiPicker = () => {
     setShowEmojis(prev => {
@@ -70,21 +73,26 @@ const EmojiPicker: React.FC<{ onSelectEmoji: (emoji: string) => void }> = ({
 const HomePagePostModal: React.FC<ModalProps> = ({ post, onClose }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const comments = useSelector((state: RootState) => state.comments.comments);
   const currentUser = useSelector((state: RootState) => state.auth.user);
-  const loading = useSelector((state: RootState) => state.comments.loading);
   const [newComment, setNewComment] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [likesCount, setLikesCount] = useState(post.likes_count || 0);
   const [commentsCount, setCommentsCount] = useState(post.comments_count || 0);
 
   useEffect(() => {
+    dispatch(fetchComments(post._id));
     setLikesCount(post.likes_count || 0);
     setCommentsCount(post.comments_count || 0);
-  }, [post]);
 
-  const handleAddComment = async () => {
-    if (!currentUser || !currentUser._id) {
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+    };
+    window.addEventListener('keydown', handleEsc);
+    return () => window.removeEventListener('keydown', handleEsc);
+  }, [dispatch, post, onClose]);
+
+  const handleAddComment = useCallback(async () => {
+    if (!currentUser?._id) {
       setError(t('postModal.errorUserNotFound'));
       return;
     }
@@ -96,16 +104,17 @@ const HomePagePostModal: React.FC<ModalProps> = ({ post, onClose }) => {
           userId: currentUser._id,
           comment_text: newComment.trim(),
         }),
-      );
+      ).unwrap();
       setNewComment('');
+      setError(null);
       setCommentsCount(prev => prev + 1);
     } catch (err) {
       setError(t('postModal.errorAddComment'));
     }
-  };
+  }, [dispatch, currentUser, newComment, post._id, t]);
 
-  const handleLikePost = async () => {
-    if (!currentUser || !currentUser._id) {
+  const handleLikePost = useCallback(async () => {
+    if (!currentUser?._id) {
       setError(t('postModal.errorUserNotFound'));
       return;
     }
@@ -116,7 +125,7 @@ const HomePagePostModal: React.FC<ModalProps> = ({ post, onClose }) => {
     } catch (err) {
       console.error('Ошибка при лайке поста:', err);
     }
-  };
+  }, [currentUser, post._id]);
 
   const handleSelectEmoji = (emoji: string) => {
     setNewComment(prev => prev + emoji);
@@ -164,12 +173,9 @@ const HomePagePostModal: React.FC<ModalProps> = ({ post, onClose }) => {
                   {commentsCount}
                 </span>
                 <span>
-                  <img
-                    src={heart}
-                    alt="likes-button"
-                    className={styles.likeIcon}
-                    onClick={handleLikePost}
-                  />
+                  <button className={styles.likeIcon} onClick={handleLikePost}>
+                    <img src={heart} alt="likes-button" />
+                  </button>
                   {likesCount}
                 </span>
               </div>

@@ -43,19 +43,24 @@ function SearchContent() {
       </div>
       <h5>{t('searchContent.recent')}</h5>
       <div className={styles.searchContent_list}>
-        {filteredUsers.map(user => (
-          <div
-            key={user._id}
-            className={styles.searchContent_listImage}
-            onClick={() => handleUserClick(user._id)}
-          >
-            <img
-              src={user.profile_image || profilePlaceholder}
-              alt={user.username}
-            />
-            <h6>{user.username}</h6>
-          </div>
-        ))}
+        {filteredUsers && filteredUsers.length > 0 ? (
+          filteredUsers.map(user => (
+            <div
+              key={user._id}
+              className={styles.searchContent_listImage}
+              onClick={() => handleUserClick(user._id)}
+            >
+              <img
+                src={user.profile_image || profilePlaceholder}
+                alt={user.username}
+              />
+
+              <h6>{user.username}</h6>
+            </div>
+          ))
+        ) : (
+          <p>Sorry, no users was found</p>
+        )}
       </div>
     </div>
   );

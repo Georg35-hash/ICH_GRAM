@@ -159,7 +159,7 @@ const PostModal: React.FC<ModalProps> = ({ post, onClose, onUpdatePosts }) => {
           <div>
             <div className={styles.modalContent_rightside_notifications}>
               <span>
-                <img src={commbtn} alt="" /> {commentsCount}
+                <img src={commbtn} alt="comment-btn" /> {commentsCount}
               </span>
               <span>
                 <img src={heart} alt="" onClick={handleLikePost} /> {likesCount}

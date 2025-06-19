@@ -21,8 +21,12 @@ export const likePost = async (req, res) => {
     const post = await Post.findById(postId);
     if (!post) return res.status(404).json({ error: 'Пост не найден' });
 
-    const existingLike = await Like.findOne({ post_id: postId, user_id: userId });
-    if (existingLike) return res.status(400).json({ error: 'Пост уже лайкнут' });
+    const existingLike = await Like.findOne({
+      post_id: postId,
+      user_id: userId,
+    });
+    if (existingLike)
+      return res.status(400).json({ error: 'Пост уже лайкнут' });
 
     const like = new Like({ post_id: postId, user_id: userId });
     await like.save();
@@ -34,15 +38,12 @@ export const likePost = async (req, res) => {
 
     const newNotification = new Notification({
       user_id: post.user_id,
-      type: "Like",
+      type: 'Like',
       // content: `${sender.username} liked your post.`,
       content: `liked your post.`,
-      sender_id: userId
-    })
+      sender_id: userId,
+    });
     await newNotification.save();
-
-
-
     res.status(201).json(like);
   } catch (error) {
     console.log(error);
@@ -76,7 +77,7 @@ export const getUserLikes = async (req, res) => {
 
   try {
     const likes = await Like.find({ user_id: userId }).select('post_id');
-    res.status(200).json(likes.map((like) => like.post_id));
+    res.status(200).json(likes.map(like => like.post_id));
   } catch (error) {
     res.status(500).json({ error: 'Ошибка при получении лайков пользователя' });
   }

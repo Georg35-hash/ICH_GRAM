@@ -140,6 +140,8 @@ span > .commentIcon,
 .likeIcon {
   height: 20px;
   height: 20px;
+  background-color: transparent;
+  border: none;
 }
 
 .avaImg {
