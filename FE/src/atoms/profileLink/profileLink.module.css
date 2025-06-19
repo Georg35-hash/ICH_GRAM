@@ -50,7 +50,8 @@
   }
   .profileLink_photoBox img {
     width: 33px;
-    height: 33px;
+    height: 24px;
+    object-fit: contain;
   }
 }
 

@@ -174,9 +174,9 @@ const MessagesRoom: React.FC = () => {
         <>
           <div className={styles.recipientInfo}>
             <img
-              src={recipient.profile_image}
+              src={recipient.profile_image || profilePlaceholder}
               alt={recipient.username}
-              className={styles.profileImage || profilePlaceholder}
+              className={styles.profileImage}
             />
             <div>
               <h5>{recipient.username}</h5>
@@ -184,9 +184,9 @@ const MessagesRoom: React.FC = () => {
           </div>
           <div className={styles.recipientInfo_inside}>
             <img
-              src={recipient.profile_image}
+              src={recipient.profile_image || profilePlaceholder}
               alt={recipient.username}
-              className={styles.profileImage_inside || profilePlaceholder}
+              className={styles.profileImage_inside}
             />
             <div>
               <h4>{recipient.username}</h4>
@@ -212,10 +212,10 @@ const MessagesRoom: React.FC = () => {
         <>
           <ul className={styles.list}>
             {messages.map(message => {
-              const isMyMessage = message.sender_id === _id; // Проверяем, кто отправитель
+              const isMyMessage = message.sender_id === _id;
               const userImage = isMyMessage
                 ? userAvatar
-                : recipient?.profile_image || profilePlaceholder; // Фото собеседника
+                : recipient?.profile_image || profilePlaceholder;
 
               return (
                 <li
@@ -224,16 +224,14 @@ const MessagesRoom: React.FC = () => {
                     isMyMessage ? styles.list_item_my : styles.list_item_their
                   }`}
                 >
-                  {/* Аватар для собеседника */}
                   {!isMyMessage && (
                     <img
-                      src={userImage}
+                      src={userImage || profilePlaceholder}
                       alt="avatar"
                       className={`${styles.avatar} ${styles.avatar_their}`}
                     />
                   )}
 
-                  {/* Текст сообщения */}
                   <div
                     className={`${styles.message_wrapper} ${
                       isMyMessage ? styles.message_my : styles.message_their
@@ -244,10 +242,9 @@ const MessagesRoom: React.FC = () => {
                     </span>
                   </div>
 
-                  {/* Аватар для пользователя */}
                   {isMyMessage && (
                     <img
-                      src={userImage}
+                      src={userImage || profilePlaceholder}
                       alt="avatar"
                       className={`${styles.avatar} ${styles.avatar_my}`}
                     />
@@ -268,9 +265,7 @@ const MessagesRoom: React.FC = () => {
                 resize: 'none',
                 overflow: 'hidden',
                 width: '36vw',
-                boxSizing: 'border-box',
                 fontSize: '16px',
-                height: '44px',
               }}
             />
             <button onClick={handleSend}>
