@@ -9,7 +9,7 @@
     "format": "prettier --write BE/src"
   },
   "keywords": [],
-  "author": "",
+  "author": "Heorhii",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.1",
