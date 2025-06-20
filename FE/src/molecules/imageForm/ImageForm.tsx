@@ -72,7 +72,6 @@ export const ImageForm: React.FC<ImageFormProps> = ({ closeModal }) => {
     setShowEmojis(prev => {
       const newState = !prev;
       if (newState) {
-        // Если смайлы открыты, через 3 секунды они закроются
         setTimeout(() => {
           setShowEmojis(false);
         }, 9000);
